@@ -1,10 +1,14 @@
 import express from 'express';
+import path from 'path';
 import routes from './routes';
 
 const app = express();
 app.use(express.json()); // Expressa não sabe que é APIRest, JSON no corpo da requisição
 // Add funcionalidade para o Express passar a entender JSON
 app.use(routes);
+
+app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
+
 app.listen(3333);
 
 // Rota: Endereço completo da requisição
